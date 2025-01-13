@@ -177,7 +177,7 @@ app.post('/send-otp', async (req, res) => {
 
         // Generate a 6-digit OTP
         const otp = crypto.randomInt(100000, 999999);
-
+//
         // Store OTP and expiration in user document or in-memory (Redis, etc.)
         user.otp = otp;
         user.otpExpiration = Date.now() + 10 * 60 * 1000; // 10 minutes validity
