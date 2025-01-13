@@ -130,15 +130,17 @@ app.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await SigninDb.findOne({ email });
+        console.log(password);
+        
 
         if (!user) {
             return res.status(401).send("Email is incorrect");
 
         }
-        // const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);
 
        
-        if (password !== user.password) {
+        if (isMatch) {
             return res.status(401).send("Invalid password");
 
         }
